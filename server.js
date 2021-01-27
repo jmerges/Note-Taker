@@ -29,11 +29,12 @@ app.get("/assets/:folder/:file", function(req, res) {
 });
 
 app.get("/api/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "./db/db.json"));
+    // res.sendFile(path.join(__dirname, "./db/db.json"));
+    return res.json(notes);
 });
 
 app.delete("/api/notes/:id", function(req, res) {
-    console.log("delete started");
+    console.log("delete started on "+req.params.id);
     notes.splice(req.params.id, 1);
     fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
         if (err) throw err;
@@ -41,6 +42,13 @@ app.delete("/api/notes/:id", function(req, res) {
     });
     console.log("delete request end");
     res.send("complete");
+});
+
+app.post("/api/notes", function(req, res) {
+    var newNote = req.body;
+    console.log(newNote);
+    notes.push(newNote);
+    res.send();
 });
 
 // ==============================
