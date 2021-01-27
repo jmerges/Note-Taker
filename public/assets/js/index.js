@@ -82,6 +82,7 @@ const handleNoteDelete = function (event) {
 // Sets the activeNote and displays it
 const handleNoteView = function () {
   activeNote = $(this).data();
+  console.log(activeNote);
   renderActiveNote();
 };
 
@@ -127,8 +128,11 @@ const renderNoteList = (notes) => {
     noteListItems.push(create$li("No saved Notes", false));
   }
 
+  var i=1;
   notes.forEach((note) => {
     const $li = create$li(note.title).data(note);
+    $li.data("id", i);
+    i++;
     noteListItems.push($li);
   });
 
