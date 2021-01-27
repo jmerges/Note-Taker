@@ -1,5 +1,5 @@
 # Note-Taker
-application: https://salty-badlands-08672.herokuapp.com/notes  
+application: https://salty-badlands-08672.herokuapp.com/  
 <br>
 James Merges  
 email: jamesmerges1@gmail.com  
