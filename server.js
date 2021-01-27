@@ -36,10 +36,10 @@ app.get("/api/notes", function(req, res) {
 app.delete("/api/notes/:id", function(req, res) {
     console.log("delete started on "+req.params.id);
     notes.splice(req.params.id-1, 1);
-    // fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
-    //     if (err) throw err;
-    //     console.log("db.json written");
-    // });
+    fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
+        if (err) throw err;
+        console.log("db.json written");
+    });
     console.log("delete request end");
     res.send("complete");
 });
@@ -48,6 +48,10 @@ app.post("/api/notes", function(req, res) {
     var newNote = req.body;
     console.log(newNote);
     notes.push(newNote);
+    fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
+        if (err) throw err;
+        console.log("db.json written");
+    });
     res.send();
 });
 
